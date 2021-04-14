@@ -13,25 +13,9 @@ jobs:
         JIRA_USER_EMAIL: ${{ secrets.JIRA_USER_EMAIL }}
         JIRA_API_TOKEN: ${{ secrets.JIRA_API_TOKEN }}
     - name: Jira TODO
-      uses: atlassian/gajira-todo@master
+      uses: TheRealWaldo/jira-get-issue@v0.0.2
       with:
-        project: GD
-        issuetype: Task
-        description: Created automatically via GitHub Actions
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-    - name: Parse Jira Keys from Commit
-      id: jira_keys
-      if: always()
-      uses: HighwayThree/jira-extract-issue-keys@master
-      with:
-        parse-all-commits: ${{ github.event_name == 'push' }}
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-    - name: Jira key Output
-      if: success()
-      run: |
-        echo "Jira key in the commit message: ${{ steps.jira_keys.outputs.jira-keys }}"
+        search-string: 'ABC-123 Find the Jira Issue'
   build:
     name: Hello world action
     runs-on: ubuntu-latest
