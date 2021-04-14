@@ -38,3 +38,50 @@ jobs:
       - uses: ./action-a
         with:
           MY_NAME: "Mona"
+  transition:
+    runs-on: ubuntu-latest
+    name: Jira transition
+    steps:
+    - name: Login
+      uses: atlassian/gajira-login@master
+      env:
+        JIRA_BASE_URL: ${{ secrets.JIRA_BASE_URL }}
+        JIRA_USER_EMAIL: ${{ secrets.JIRA_USER_EMAIL }}
+        JIRA_API_TOKEN: ${{ secrets.JIRA_API_TOKEN }}
+    - name: Jira issue id extractor
+      id: run_tests
+      uses: TheRealWaldo/jira-get-issue@v0.0.2
+      with:
+        search-string: ${{github.event.head_commit.message}}
+    - name: Transition issue
+      uses: atlassian/gajira-transition@master
+      with:
+        issue: ${{steps.run_tests.outputs.issue-key}}
+        transition: "In progress"
+  deploy:
+    runs-on: ubuntu-latest
+    name: deploy
+    steps:
+    - name: Print env
+      run: |
+         sleep 5 && echo "deployed successfully"
+  story-closure:
+    runs-on: ubuntu-latest
+    name: Jira Story Closure
+    steps:
+    - name: Login
+      uses: atlassian/gajira-login@master
+      env:
+        JIRA_BASE_URL: ${{ secrets.JIRA_BASE_URL }}
+        JIRA_USER_EMAIL: ${{ secrets.JIRA_USER_EMAIL }}
+        JIRA_API_TOKEN: ${{ secrets.JIRA_API_TOKEN }}
+    - name: Jira issue id extractor
+      id: run_tests
+      uses: TheRealWaldo/jira-get-issue@v0.0.2
+      with:
+        search-string: ${{github.event.head_commit.message}}
+    - name: Transition issue
+      uses: atlassian/gajira-transition@master
+      with:
+        issue: ${{steps.run_tests.outputs.issue-key}}
+        transition: "Done"
