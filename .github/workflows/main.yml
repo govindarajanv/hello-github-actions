@@ -23,6 +23,9 @@ jobs:
     - name: Print env
       run: |
          env
+         echo $GITHUB_CONTEXT
+      env:
+        GITHUB_CONTEXT: ${{ toJson(github) }}
   build:
     name: Hello world action
     runs-on: ubuntu-latest
