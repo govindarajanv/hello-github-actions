@@ -2,6 +2,16 @@ name: A workflow for my Hello World file
 on: push
 
 jobs:
+  validate:
+    runs-on: ubuntu-latest
+    name: Jira id validator
+    steps:
+    - name: Login
+      uses: atlassian/gajira-login@master
+      env:
+        JIRA_BASE_URL: ${{ secrets.JIRA_BASE_URL }}
+        JIRA_USER_EMAIL: ${{ secrets.JIRA_USER_EMAIL }}
+        JIRA_API_TOKEN: ${{ secrets.JIRA_API_TOKEN }}
   build:
     name: Hello world action
     runs-on: ubuntu-latest
