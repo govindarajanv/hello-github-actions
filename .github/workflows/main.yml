@@ -29,6 +29,10 @@ jobs:
         parse-all-commits: ${{ github.event_name == 'push' }}
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    - name: Jira key Output
+      if: success()
+      run: |
+        echo "Jira key in the commit message: ${{ steps.jira_keys.outputs.jira-keys }}"
   build:
     name: Hello world action
     runs-on: ubuntu-latest
