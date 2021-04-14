@@ -20,6 +20,9 @@ jobs:
     - name: Print Jira id
       run: |
          echo ${{steps.run_tests.outputs.issue-key}}
+    - name: Print env
+      run: |
+         env
   build:
     name: Hello world action
     runs-on: ubuntu-latest
