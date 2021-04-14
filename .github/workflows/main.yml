@@ -16,7 +16,7 @@ jobs:
       id: run_tests
       uses: TheRealWaldo/jira-get-issue@v0.0.2
       with:
-        search-string: 'ABC-123 Find the Jira Issue'
+        search-string: 'GD-1 Find the Jira Issue'
     - name: Print Jira id
       run: |
          echo ${{steps.run_tests.outputs.issue-key}}
