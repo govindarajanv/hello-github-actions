@@ -4,7 +4,7 @@ on: push
 jobs:
   validate:
     runs-on: ubuntu-latest
-    name: Jira id validator
+    name: Validations
     steps:
     - name: Login
       uses: atlassian/gajira-login@master
@@ -31,7 +31,8 @@ jobs:
         issue: ${{steps.run_tests.outputs.issue-key}}
         transition: "In progress"
   build:
-    name: Hello world action
+    name: Build
+    needs: [validate]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
@@ -39,8 +40,9 @@ jobs:
         with:
           MY_NAME: "Mona"
   transition:
+    needs: [build]
     runs-on: ubuntu-latest
-    name: Jira transition
+    name: Test
     steps:
     - name: Login
       uses: atlassian/gajira-login@master
@@ -59,13 +61,15 @@ jobs:
         issue: ${{steps.run_tests.outputs.issue-key}}
         transition: "In progress"
   deploy:
+    needs: [transition]
     runs-on: ubuntu-latest
-    name: deploy
+    name: Deploy
     steps:
     - name: Print env
       run: |
          sleep 5 && echo "deployed successfully"
   story-closure:
+    needs: [deploy]
     runs-on: ubuntu-latest
     name: Jira Story Closure
     steps:
