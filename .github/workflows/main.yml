@@ -12,10 +12,13 @@ jobs:
         JIRA_BASE_URL: ${{ secrets.JIRA_BASE_URL }}
         JIRA_USER_EMAIL: ${{ secrets.JIRA_USER_EMAIL }}
         JIRA_API_TOKEN: ${{ secrets.JIRA_API_TOKEN }}
-    - name: Jira TODO
+    - name: Jira issue id extractor
       uses: TheRealWaldo/jira-get-issue@v0.0.2
       with:
         search-string: 'ABC-123 Find the Jira Issue'
+    - name: Print Jira id
+      run: |
+         echo ${steps.run_tests.outputs}
   build:
     name: Hello world action
     runs-on: ubuntu-latest
