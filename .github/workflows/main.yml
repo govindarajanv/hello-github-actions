@@ -25,6 +25,11 @@ jobs:
          echo ${{github.event.head_commit.message}}
       env:
         GITHUB_CONTEXT: ${{ toJson(github) }}
+    - name: Transition issue
+      uses: atlassian/gajira-transition@master
+      with:
+        issue: ${{steps.run_tests.outputs.issue-key}}
+        transition: "In progress"
   build:
     name: Hello world action
     runs-on: ubuntu-latest
