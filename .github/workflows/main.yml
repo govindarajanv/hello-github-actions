@@ -18,7 +18,7 @@ jobs:
         search-string: 'ABC-123 Find the Jira Issue'
     - name: Print Jira id
       run: |
-         echo ${steps.run_tests.outputs}
+         echo ${{steps.run_tests.outputs.issue-key}}
   build:
     name: Hello world action
     runs-on: ubuntu-latest
