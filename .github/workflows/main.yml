@@ -67,7 +67,7 @@ jobs:
     steps:
     - name: Print env
       run: |
-         sleep 5 && echo "deployed successfully"
+         sleep 2 && echo "deployed successfully"
   story-closure:
     needs: [deploy]
     runs-on: ubuntu-latest
