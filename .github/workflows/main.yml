@@ -9,6 +9,7 @@ jobs:
       - uses: actions/checkout@v1
       - run: |
          sign_value=$(md5sum ./.github/workflows/main.yml)
+         sign_value=$(echo $sign_value|cut -f1 -d' '|tr -s ' ')
          echo $sign_value
          ref_value=$(cat ./checksum)
          echo $ref_value
