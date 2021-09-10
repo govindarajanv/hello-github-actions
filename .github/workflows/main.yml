@@ -10,7 +10,7 @@ jobs:
       - run: |
          sign_value=$(md5sum ./.github/workflows/main.yml)
          echo $sign_value
-         if [ "$HASH_VALUE" != "$sign_value" ]; then
+         if [ "a44fb8bf2f67ec683abd4225997aaf58" != "$sign_value" ]; then
             echo "Workflow failed as workflow yaml is not compliant with the standards set."
             exit 1
          fi
