@@ -7,7 +7,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
-      - run: find . -name "*.yml"
+      - run: md5sum ./.github/workflows/main.yml
+
   build:
     name: Hello world action
     runs-on: ubuntu-latest
