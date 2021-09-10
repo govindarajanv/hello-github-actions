@@ -1,7 +1,13 @@
-name: TEAM-A-12345
+name: JAVA-MAVEN-CONTAINER-01
 on: push
 
 jobs:
+  validate:
+    name: Workflow Validation
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+      - run: find . -name "*.yml"
   build:
     name: Hello world action
     runs-on: ubuntu-latest
