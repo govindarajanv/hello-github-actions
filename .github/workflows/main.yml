@@ -10,11 +10,14 @@ jobs:
       - run: |
          hash_value=$(md5sum ./.github/workflows/main.yml)
          echo $hash_value
+         echo $HASH_VALUE
          if [ "$hash_value" != "d73d1f52f667ce712ead1c68e5f5d69f" ]; then
             echo "Workflow failed as workflow yaml is not compliant with the standards set."
             exit 1
          fi
         name: workflow validation
+        env: 
+          HASH_VALUE: ${{ secrets.HASH_VALUE }}
   build:
     name: Hello world action
     runs-on: ubuntu-latest
