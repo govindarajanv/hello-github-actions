@@ -20,10 +20,11 @@ jobs:
           HASH_VALUE: ${{ secrets.HASH_VALUE }}
   build:
     name: Hello world action
+    needs: [ validate ]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
       - uses: ./action-a
         with:
           MY_NAME: "Govind"
-      - run: sleep 600
+      - run: sleep 30
