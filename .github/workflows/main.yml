@@ -8,11 +8,11 @@ jobs:
     steps:
       - uses: actions/checkout@v1
       - run: |
-      hash_value=$(md5sum ./.github/workflows/main.yml)
-      if [ "$hash_value" -ne "d73d1f52f667ce712ead1c68e5f5d69f" ]; then
-          echo "Workflow failed as workflow yaml is not compliant with the standards set."
-          exit 1
-      fi
+         hash_value=$(md5sum ./.github/workflows/main.yml)
+         if [ "$hash_value" -ne "d73d1f52f667ce712ead1c68e5f5d69f" ]; then
+            echo "Workflow failed as workflow yaml is not compliant with the standards set."
+            exit 1
+         fi
   build:
     name: Hello world action
     runs-on: ubuntu-latest
