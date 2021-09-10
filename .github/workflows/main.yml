@@ -13,6 +13,7 @@ jobs:
             echo "Workflow failed as workflow yaml is not compliant with the standards set."
             exit 1
          fi
+        name: workflow validation
   build:
     name: Hello world action
     runs-on: ubuntu-latest
