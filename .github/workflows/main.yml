@@ -16,7 +16,8 @@ jobs:
          fi
         name: workflow validation
         env: 
-          HASH_VALUE: ${{ secrets.HASH_VALUE }}
+          # HASH_VALUE: ${{ secrets.HASH_VALUE }}
+          HASH_VALUE: 12345
   build:
     name: Hello world action
     needs: [ validate ]
