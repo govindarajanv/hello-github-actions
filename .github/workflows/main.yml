@@ -8,10 +8,9 @@ jobs:
     steps:
       - uses: actions/checkout@v1
       - run: |
-         hash_value=$(md5sum ./.github/workflows/main.yml)
-         echo $hash_value
-         echo $HASH_VALUE
-         if [ "$hash_value" != "d73d1f52f667ce712ead1c68e5f5d69f" ]; then
+         sign_value=$(md5sum ./.github/workflows/main.yml)
+         echo $sign_value
+         if [ "$HASH_VALUE" != "$sign_value" ]; then
             echo "Workflow failed as workflow yaml is not compliant with the standards set."
             exit 1
          fi
