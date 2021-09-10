@@ -1,4 +1,4 @@
-name: A workflow for my Hello World file
+name: TEAM-A-12345
 on: push
 
 jobs:
